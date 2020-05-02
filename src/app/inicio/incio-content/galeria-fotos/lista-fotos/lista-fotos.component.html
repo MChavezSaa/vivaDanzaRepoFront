@@ -1,0 +1,120 @@
+<div style="background-color: #fff8e7;">
+    <div class="container">
+        <div class="row">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb " style="background-color: #fff8e7;">
+                    <li class="breadcrumb-item"><a [routerLink]="['/inicio']" href="#">Inicio</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/inicio/Galeria']">Galería</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Gestión Galería</li>
+                </ol>
+            </nav>
+        </div>
+        <br>
+        <hr>
+        <div align="center">
+            <i>
+                <h4>Gestion de galería</h4>
+            </i>
+        </div>
+        <hr>
+        <div class="container">
+            <div class="a2">
+                <p>Filtrar por nombre</p>
+                <input type="text"  [(ngModel)]="searchText"> &nbsp;&nbsp;&nbsp;
+                <button (click)="albumForm()" type="button" class="btn btn-primary">
+                    <i class="fas fa-plus-circle"></i> Agregar Album</button>
+            </div>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-activo-tab" data-toggle="tab" href="#nav-activo" role="tab"
+                        aria-controls="nav-activo" aria-selected="true">Albumes Activos</a>
+                    <a class="nav-item nav-link" id="nav-inactivo-tab" data-toggle="tab" href="#nav-AlbumInactivo" role="tab"
+                        aria-controls="nav-inactivo" aria-selected="false"> Albumes Inactivos</a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-activo" role="tabpanel" aria-labelledby="nav-activo-tab">
+                    <div class="card mb-3">
+                        <div class="card-header text-center">
+                            Albumes Activos
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="thead-dark" style="text-align: left">
+                                        <tr>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Agregar Fotos</th>
+                                            <th scope="col">Editar</th>
+                                            <th scope="col">Eliminar</th>
+                                            <th scope="col">Gestión Fotos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngFor="let c of albumesList | filter: searchText ">
+                                            <tr *ngIf="estado(c) == 'Activo' " >
+                                                <td>{{c.nombre}} </td>
+                                                <td>{{estado(c)}}</td>
+                                                <td><button type="button" name="editar"
+                                                        [routerLink]="['/inicio/albumForm',c.id_album]" class="btn btn-success"><i
+                                                            class="fas fa-cloud-upload-alt"></i> Agregar</button>
+                                                </td>
+                                                <td><button type="button" name="editar"
+                                                        [routerLink]="['/inicio/editarAlbum',c.id_album]" class="btn btn-primary"><i
+                                                            class="fas fa-pencil-alt"></i> Editar</button></td>
+                                                <td><button type="button" name="eliminar" class="btn btn-danger"
+                                                        (click)='delete(c)'><i class="fas fa-trash-alt"></i> Eliminar</button></td>
+                                                <td><button type="button" name="eliminar" class="btn btn-warning"
+                                                        [routerLink]="['/inicio/gesFotos',c.id_album]">
+                                                        <i class="fas fa-images"></i> Gestión</button></td>
+                                            </tr>
+            
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="tab-pane fade" id="nav-AlbumInactivo" role="tabpanel" aria-labelledby="nav-inactivo-tab">
+                    <div class="card mb-3">
+                        <div class="card-header text-center">
+                            Albumes Inactivos
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="thead-dark" style="text-align: left">
+                                        <tr>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Activar</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngFor="let c of albumesList | filter: searchText ">
+                                            <tr *ngIf="estado(c) == 'Inactivo' ">
+                                                <td>{{c.nombre}} </td>
+                                                <td>{{estado(c)}}</td>
+                                                <td><button type="button" name="editar"
+                                                        (click)="darAlta(c)" class="btn btn-success">
+                                                        <i class="fas fa-check-double"></i> Activar</button>
+                                                </td>
+                                            
+                                            </tr>
+            
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

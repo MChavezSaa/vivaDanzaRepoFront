@@ -1,0 +1,23 @@
+a{
+    padding-right: 15px;
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+.a2{
+    padding-right: 15px;
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+img{
+    /* cambia estos dos valores para definir el tamaño de tu círculo */
+    height: 5%;
+    width: 5%;
+    /* los siguientes valores son independientes del tamaño del círculo */
+    background-repeat: no-repeat;
+    background-position: 30%;
+    border-radius: 30%;
+    background-size: 100% auto;   
+}

@@ -1,0 +1,72 @@
+<div style="background-color: #fff8e7;">
+    <div class="container">
+        <div class="row">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb " style="background-color: #fff8e7;">
+                    <li class="breadcrumb-item"><a [routerLink]="['/inicio']" href="#">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Galería</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-9">
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-primary" (click)="gestion()">
+                        <i class="fas fa-tasks"></i> Gestión Albumes</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <h3>Albumes</h3>
+                    <br>
+                    <div *ngFor="let album of albumesList">
+                        <div style="background-color: #fff8e7;">
+                            <ul>
+                                <div class="card" style="width: 12rem;" *ngIf="album.estado==true">
+                                    <div class="card-body" (click)="selecionarAlbum(album)">
+                                        <i class="far fa-folder"> {{album.nombre}}
+                                        </i>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding-left: 50px;" class="col-9">
+                    <div class="row">
+                        <div class="col-lg-3s" style="padding-right: 15px;" *ngFor="let fotos of fotosListAux">
+                            <div class="card" style="width: 230px;" (click)="expandir(fotos.file)" data-toggle="modal"
+                                data-target="#exampleModal">
+                                <img class="card-img-top" src="http://localhost:8080/uploads/{{fotos.file}}"
+                                    alt="Card image cap">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img class="card-img-top" src="http://localhost:8080/uploads/{{fotoExpandida}}" alt="Card image cap">
+            </div>
+        </div>
+    </div>
+</div>

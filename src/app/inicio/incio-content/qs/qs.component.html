@@ -1,0 +1,52 @@
+<div style="background-color: #fff8e7;">
+    <div>
+        <br>
+        <i>
+            <hr>
+            <h4 style="text-align: center;">Quiénes Somos</h4>
+            <p style="padding-left: 15px; text-align:center;">Escuela dedicada a la enseñanza de la danza por medio de
+                una
+                metodología consciente, respetuosa del cuerpo y las personas. <br>Iniciando nuestros trabajos desde el
+                año
+                2017.</p>
+            <hr>
+            <h4 style="text-align: center;">Equipo</h4>
+        </i>
+        <div class="a2" align="right">
+            <button [routerLink]="[ '/inicio/gf']" type="button" class="btn btn-outline-primary">Gestionar
+                Funcionarios</button>
+        </div>
+        <hr>
+
+        <br>
+    </div>
+    <div class="row" style="padding-left: 15px;">
+        <!-- Team member -->
+        <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let Funcionarios of this.FuncionarioList "> <!--| filter: searchText"-->        
+            <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                <div class="mainflip">
+                    <div class="frontside">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <!--<p><img class=" img-fluid" src="http://parra.chillan.ubiobio.cl:8080/alvaro.castillo1501/servicio/uploads/img/{{Profesional.foto}}" alt="card image"></p>-->
+                                <h4 class="card-title">{{Funcionarios.nombres}} {{Funcionarios.apellidos}}</h4>
+                                <p class="card-text">Funcionario de Viva Danza</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="backside">
+                        <div class="card">
+                            <div class="card-body text-center mt-4">
+                                <!--<h4 class="card-title">{{Profesional.nombre}} {{Profesional.apellido}}</h4>-->
+                                <!--<p class="card-text">Telefono de Contacto:{{Profesional.telefono}} y Correo Electronico :{{Profesional.email}} </p>-->
+                                <p class="card-text">Funcionario de Viva Danza</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./Team member -->
+    </div>
+</div>

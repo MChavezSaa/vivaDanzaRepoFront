@@ -1,0 +1,56 @@
+<div style="background-color: #fff8e7;">
+    <br>
+    <hr>
+    <div align="center">
+        <i>
+            <h4>Gestion de Funcionarios</h4>
+        </i>
+    </div>
+    <hr>
+    <div class="a2">
+        <p>Filtrar por nombre</p>
+        <input type="text"> &nbsp;&nbsp;&nbsp;
+        <button [routerLink]="[ '/inicio/fform']" type="button" class="btn btn-outline-primary">Agregar
+            Funcionario</button>
+    </div>
+    <div class="card mb-3">
+        <!--CARD CONTENEDORA DE LA TABLA-->
+        <div class="card-header text-center">
+            Lista de funcionarios
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <!--INICIO TABLA REVISIONES-->
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of funcionariosList">
+
+                            <td>{{c.nombres}} {{c.apellidos}}</td>
+                            <td>{{c.correo}}</td>
+                            <td>{{c.telefono}}</td>
+                            <td><button type="button" name="editar"
+                                    [routerLink]="['/personal-inicio/clientes-form',c.id]"
+                                    class="btn btn-primary">editar</button></td>
+                            <td><button type="button" name="eliminar" class="btn btn-danger"
+                                    (click)='delete(c)'>eliminar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--FIN TABLA REVISIONES-->
+        </div>
+    </div>
+    <br>
+    
+</div>
+
+<!--FIN CARD CONTENEDORA DE TABLA-->
