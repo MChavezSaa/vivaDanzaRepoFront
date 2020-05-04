@@ -6,6 +6,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Funcionario } from '../Entidades/Funcionario';
 import { Album } from '../Entidades/Album';
 import { Foto } from '../Entidades/Foto';
+import { Carousel } from '../Entidades/carousel';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,38 @@ export class BackServiceService {
   updateAlbum(album: Album, id): Observable<Album> {
     return this.http.put<Album>(this.urlEndPoint+"updateAlbum/"+ id , album);
   }
+  /*CAROUSEL */
+  getCarousel(): Observable<Carousel[]>{
+    return this.http.get<Carousel[]>(this.urlEndPoint+"carousel/");
+  }
+
+  //
+  desactivarFotoCarousel(id: number):Observable<Carousel>{
+    return this.http.delete<Carousel>(`${this.urlEndPoint}desacCar/${id}`).pipe(
+      catchError(e=>{
+        console.error(e.error.mensaje);
+        return throwError(e);
+      })
+    );
+  }
+
+  subirNuevaImagenCarousel(archivo: File): Observable<Foto> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);   
+    return this.http.post(this.urlEndPoint + 'saveImagenNueva', formData).pipe(
+      map((response: any) => response.foto as Foto),
+      catchError(e => {
+        console.log(e.error.mensaje);
+        return throwError(e);
+      })
+    );
+  }
+
+  subirImagenExistente(carousel: Carousel): Observable<Carousel>{    
+    return this.http.post<Carousel>(this.urlEndPoint+'saveImagenExistente', carousel).pipe(
+      catchError(this.handleError('Carousel', carousel))
+    );
+  }
 
   /*FOTOS */
   getFotos(): Observable<Foto[]> {
@@ -69,6 +102,9 @@ export class BackServiceService {
     );
 
   }
+
+  
+
 
   fotosPorAlbum(id: number): Observable<Foto[]>{
     return  this.http.get<Foto[]>(this.urlEndPoint + 'fotosPorAlbum/'+ id);

@@ -20,6 +20,15 @@ import { DetalleFotosComponent } from './inicio/incio-content/galeria-fotos/list
 import { EditarAlbumComponent } from './inicio/incio-content/galeria-fotos/lista-fotos/editar-album/editar-album.component';
 import { GestionFotosComponent } from './inicio/incio-content/galeria-fotos/gestion-fotos/gestion-fotos.component';
 import { FilterGalleryPipe } from './pipes/filter-gallery.pipe';
+import { EditarCarouselComponent } from './inicio/incio-content/editar-carousel/editar-carousel.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NuevaFotoCarouselComponent } from './inicio/incio-content/editar-carousel/nueva-foto-carousel/nueva-foto-carousel.component';
+import { FotoExistenteComponent } from './inicio/incio-content/editar-carousel/foto-existente/foto-existente.component';
+
+
 
 
 
@@ -72,6 +81,18 @@ const routes: Routes = [
       {
         path:'gesFotos/:id',
         component:GestionFotosComponent
+      },
+      {
+        path:'editarCarousel',
+        component: EditarCarouselComponent
+      },
+      {
+        path:'nuevaFotoCarousel',
+        component: NuevaFotoCarouselComponent
+      },
+      {
+        path:'fotoExistente',
+        component: FotoExistenteComponent
       }
     ]
   },
@@ -101,14 +122,21 @@ const routes: Routes = [
     EditarAlbumComponent,
     GestionFotosComponent,
     FilterGalleryPipe,
+    EditarCarouselComponent,
+    NuevaFotoCarouselComponent,
+    FotoExistenteComponent,
     
   ],
   imports: [
+    CarouselModule.forRoot(),
+    TooltipModule.forRoot(),
     BrowserModule,
     RouterModule.forRoot(routes),    //se le entrega nuestro arreglo con las rutas definidas
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

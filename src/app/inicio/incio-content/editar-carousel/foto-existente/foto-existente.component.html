@@ -1,0 +1,78 @@
+<div style="background-color: #fff8e7;">
+    <div class="container">
+        <div class="row">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb " style="background-color: #fff8e7;">
+                    <li class="breadcrumb-item"><a [routerLink]="['/inicio']" href="#">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Galería</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-9">
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-primary" (click)="gestion()">
+                        <i class="fas fa-tasks"></i> Fotos Existentes</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <h3>Albumes</h3>
+                    <br>
+                    <div *ngFor="let album of AlbumesList">
+                        <div style="background-color: #fff8e7;">
+                            <ul>
+                                <div class="card" style="width: 12rem;" *ngIf="album.estado==true">
+                                    <div class="card-body" (click)="cambioAlbum(album)">
+                                        <i class="far fa-folder"> {{album.nombre}}
+                                        </i>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding-left: 50px;" class="col-9">
+                    <div class="row">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <!--INICIO TABLA REVISIONES-->
+                                <table class="table table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Miniatura</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Activar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngFor="let c of fotosFiltradas">
+                                            <tr>
+                                                <td><img src="http://localhost:8080/uploads/{{c.file}}"
+                                                        style="height: 90px; width: 90px;" alt=""></td>
+                                                <td>{{c.file}} </td>
+                                                <td><button type="button" name="eliminar" class="btn btn-success" (click)='activar(c)'>
+                                                    <i class="fas fa-check-double"></i> Activar</button></td>
+                                            </tr>
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--FIN TABLA REVISIONES-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+

@@ -1,0 +1,16 @@
+<div class="container">
+    <br><br>
+    <div class="row">
+       
+        <div class="col">
+            <label>Seleccionar Fotos
+            </label>
+            <br>
+            <input (change)="seleccionarFotos($event)" type="file"  id="" multiple>
+        </div>
+        <div class="col">
+            <button type="submit" (click)='save()' class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+    <br><br>
+</div>
