@@ -1,5 +1,5 @@
 <div style="background-color: #fff8e7;">
-    <div class="container" >
+    <div *ngIf="this.service.isAuthenticated()== true "  class="container" >
         <div class="row" >
             <nav aria-label="breadcrumb" >
                 <ol class="breadcrumb " style="background-color: #fff8e7;" >
@@ -13,13 +13,13 @@
     </div>
     <br>
     <hr>
-    <div align="center">
+    <div *ngIf="this.service.isAuthenticated()== true "  align="center">
         <i>
             <h4>Gestion de fotos</h4>
         </i>
     </div>
     <hr>
-    <div class="container">
+    <div *ngIf="this.service.isAuthenticated()== true "  class="container">
         <div class="card mb-3">
             <!--CARD CONTENEDORA DE LA TABLA-->
             <div class="card-header text-center">
@@ -52,5 +52,4 @@
         </div>
         <br>
     </div>
-
 </div>

@@ -1,60 +1,66 @@
 <div style="background-color: #fff8e7;">
-    <div class="container" >
-        <div class="row" >
-            <nav aria-label="breadcrumb" >
-                <ol class="breadcrumb " style="background-color: #fff8e7;" >
-                    <li class="breadcrumb-item" ><a [routerLink]="['/inicio']" href="#">Inicio</a></li>
-                    <li class="breadcrumb-item" ><a [routerLink]="['/inicio/Galeria']" >Galería</a></li>                    
-                    <li class="breadcrumb-item active" aria-current="page" >Formulario Edición Albumes</li>
+    <div class="container" *ngIf="this.service.isAuthenticated()== true " >
+        <div class="row">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb " style="background-color: #fff8e7;">
+                    <li class="breadcrumb-item"><a [routerLink]="['/inicio']" href="#">Inicio</a></li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/inicio/Galeria']">Galería</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Formulario Edición Albumes</li>
                 </ol>
             </nav>
         </div>
-    <br>
-    <div class="container" style="background-color: #fff8e7;">
-        <legend>Formulario Albumes</legend>
-        <hr style="color: black">
-        <div class="container">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-6">
-                        <label>Nombre
-                        </label><br>
-                        <input type="text" [(ngModel)]="nombre" class="form-control"
-                            id="nombres" placeholder="Ingrese Nombre del álbum">
-                      
-                    </div>
-                    <div class="col-6">
-                        <label>Seleccionar Fotos
-                        </label>
-                        <br>
-                        <input (change)="seleccionarFotos($event)" disabled=true type="file" id="" multiple>
-                    </div>
+        <br>
+        <div class="container" style="background-color: #fff8e7;">
+            <legend>Formulario Albumes</legend>
+            <hr style="color: black">
+            <div class="container">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Nombre
+                            </label><br>
+                            <input type="text" [(ngModel)]="nombre" class="form-control" id="nombres"
+                                placeholder="Ingrese Nombre del álbum">
 
-                </div>
-                <br><br>
-                <div class="row">
-                    <div class="col-6">
-                        <label for="">Estado</label><br>
-                        <select name="select" class="form-control" [(ngModel)]="estado">
-                            <option [ngValue]="1" selected>Activo</option>
-                            <option [ngValue]="0" >Inactivo</option>
-                          </select>
-                       
+                        </div>
+                        <div class="col-6">
+                            <label>Seleccionar Fotos
+                            </label>
+                            <br>
+                            <input (change)="seleccionarFotos($event)" disabled=true type="file" id="" multiple>
+                        </div>
+
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Estado</label><br>
+                            <select name="select" class="form-control" [(ngModel)]="estado">
+                                <option [ngValue]="1" selected>Activo</option>
+                                <option [ngValue]="0">Inactivo</option>
+                            </select>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col">
-                    <button (click)="cancelar()" class="btn btn-danger">
-                        Cancelar </button>
+                <div class="form-group row">
+                    <div class="col">
+                        <button (click)="cancelar()" class="btn btn-danger">
+                            Cancelar </button>
+                    </div>
+                    <div class="col">
+                        <button type="submit" (click)='save()' class="btn btn-primary">Guardar</button>
+                    </div>
+                    <br>
                 </div>
-                <div class="col">
-                    <button type="submit" (click)='save()' class="btn btn-primary">Guardar</button>
-                </div>
-                <br>
-            </div>
 
+            </div>
         </div>
+        <br>
     </div>
-    <br>
+    <div  *ngIf="this.service.isAuthenticated()== false " class="container ">
+        <div align="center">
+            <img src="../../../../../../assets/img/404.jpg" alt="">
+        </div>
+    </div>    
 </div>

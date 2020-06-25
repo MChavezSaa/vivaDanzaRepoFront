@@ -1,5 +1,5 @@
 <div style="background-color: #fff8e7;">
-    <div class="container">
+    <div *ngIf="this.service.isAuthenticated()== true " class="container">
         <div class="row">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb " style="background-color: #fff8e7;">
@@ -117,4 +117,9 @@
             <br>
         </div>
     </div>
+    <div  *ngIf="this.service.isAuthenticated()== false " class="container ">
+        <div align="center">
+            <img src="../../../../../../assets/img/404.jpg" alt="">
+        </div>
+    </div>    
 </div>

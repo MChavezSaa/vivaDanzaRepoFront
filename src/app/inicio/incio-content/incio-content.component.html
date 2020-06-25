@@ -18,7 +18,10 @@
         </div>
       </div>
       <div class="col-2">
-        <button type="button" class="btn btn-primary" [routerLink]="[ '/inicio/editarCarousel']">Editar Fotos</button>
+        <button *ngIf="this.service.isAuthenticated()== true 
+        && (this.service.hasRole('ROLE_ADMIN') || this.service.hasRole('ROLE_EMP')) " 
+        type="button" class="btn btn-primary" 
+        [routerLink]="[ '/inicio/editarCarousel']">Editar Fotos</button>
       </div>
     </div>
   </div>

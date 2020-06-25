@@ -27,6 +27,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NuevaFotoCarouselComponent } from './inicio/incio-content/editar-carousel/nueva-foto-carousel/nueva-foto-carousel.component';
 import { FotoExistenteComponent } from './inicio/incio-content/editar-carousel/foto-existente/foto-existente.component';
+import { EditarFuncionarioComponent } from './editar-funcionario/editar-funcionario.component';
+import { SubirImagenFunComponent } from './inicio/incio-content/funcionario-table/funcionario-form/subir-imagen-fun/subir-imagen-fun.component';
 
 
 
@@ -57,6 +59,14 @@ const routes: Routes = [
       {
         path: 'fform',
         component: FuncionarioFormComponent
+      },
+      {
+        path: 'fform/:id',
+        component: FuncionarioFormComponent
+      },
+      {
+        path: 'sbi',
+        component: SubirImagenFunComponent
       },
       {
         path:'Galeria',
@@ -125,6 +135,8 @@ const routes: Routes = [
     EditarCarouselComponent,
     NuevaFotoCarouselComponent,
     FotoExistenteComponent,
+    EditarFuncionarioComponent,
+    SubirImagenFunComponent,
     
   ],
   imports: [

@@ -13,7 +13,8 @@
                 <div class="col-9">
                 </div>
                 <div class="col-3">
-                    <button type="button" class="btn btn-primary" (click)="gestion()">
+                    <button *ngIf="this.service.isAuthenticated()== true " 
+                    type="button" class="btn btn-primary" (click)="gestion()">
                         <i class="fas fa-tasks"></i> Gestión Albumes</button>
                 </div>
             </div>

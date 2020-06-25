@@ -39,7 +39,7 @@
                     <div class="col-4">
                         <label>Rut</label>
                         <input [disabled]="this.deshabilitadorCampos != true" [(ngModel)]="fun.rut" type="text"
-                            class="form-control" id="apellidos" placeholder="Ingrese RUT del funcionario">
+                            class="form-control" id="apellidos" placeholder="Ingrese Apellidos del funcionario">
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-6" *ngIf="activadorFoto">
                         <label for="exampleFormControlSelect1">Foto</label><br>
-                        <input (change)="seleccionarFotos($event)" type="file" id="" multiple>
+                        <input (change)="seleccionarFotos($event)" type="file" id="">
                     </div>
                 </div>
             </div>

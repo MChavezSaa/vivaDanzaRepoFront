@@ -3,7 +3,8 @@ export class Funcionario{
     nombres: string;
     apellidos: string;
     cargo: string;
+    rut: string;
     leyenda: string;
     estado_funcionario: boolean;
-    foto: File;
+    foto: string;
 }
