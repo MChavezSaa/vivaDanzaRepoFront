@@ -232,18 +232,19 @@ export class BackServiceService {
 
     return this.http.put('http://localhost:8080/darAltaFunc/' + id, { headers: httpHeaders });
   }
-
-  darAlta(id: number): Observable<any> {
-    
-    return this.http.put<any>(this.urlEndPoint+'darAltaFunc/'+id, { headers: this.agregarAuthorizationHeader() }).pipe(
-      catchError(e => {     
+  darAlta(funcionario: Funcionario, id: number): Observable<any> {
+    return this.http.put<any>(`${this.urlEndPoint}darAlta/${id}`, funcionario, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        if (this.isNoAutorizado(e)) {
+          return throwError(e);
+        }
         console.error(e.error.mensaje);
         Swal.fire('Error al dar de alta el funcionario', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
   }
-
+ 
   /*ALBUM */
   getAlbumes(): Observable<Album[]> {
     return this.http.get<Album[]>(this.urlEndPoint + 'ListAlbumes', { headers: this.agregarAuthorizationHeader() }).pipe(

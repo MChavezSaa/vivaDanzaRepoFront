@@ -38,15 +38,16 @@ export class FuncionarioTableComponent implements OnInit {
       this.ngOnInit()
     });
   }
-  public darAlta1(funcionario: Funcionario): void {
-    let id :number ;
-    id = funcionario.id_funcionario;
-    this.service.darAlta(id).subscribe(
-      fun => {
-        Swal.fire('Funcionario dado de alta', ' Dado de alta con Exito', 'success');
-      },
-      err => {
-        console.log(err);
-      });
+
+  public darAlta(fun: Funcionario): void {
+    this.service.darAlta(fun, fun.id_funcionario)
+      .subscribe(
+        json => {
+          Swal.fire('Cambio de estado',' Cambio de estado realizado con éxito', 'success');
+          this.ngOnInit();
+        },
+        err => {
+          console.log(err);
+        });
   }
 }
