@@ -24,7 +24,7 @@
     <div class="row" style="padding-left: 20px;"> 
         <div *ngFor="let Funcionarios of this.FuncionarioList " style="padding-left: 15px;">
             <div class="card" style="width: 18rem;">
-                <img class=" img-fluid" src="http://localhost:8080/uploads/{{Funcionarios.foto}}" alt="card image">
+                <img class=" img-fluid" src="http://localhost:8080/uploads/{{Funcionarios.foto}}"  style="widows: 290px; height: 290px;" alt="card image">
                 <div class="card-body">
                     <h5 class="card-title"><b>{{Funcionarios.nombres | titlecase}}</b></h5>
                     <h5 class="card-title"> <b>{{Funcionarios.apellidos | titlecase}}</b></h5>

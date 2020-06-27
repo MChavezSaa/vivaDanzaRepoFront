@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Funcionario } from 'src/app/Entidades/Funcionario';
 import { BackServiceService } from 'src/app/services/back-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-funcionario-form',
@@ -15,8 +16,8 @@ export class FuncionarioFormComponent implements OnInit {
   deshabilitadorCampos: boolean;
   funcionarioBuscado: Funcionario;
   FotoFuncionario: File;
-  id: number;
-  funcionariosList: Funcionario[] = [];
+  id: number;  
+  editarIsOn = false;
 
   constructor(private service: BackServiceService,
      public activeRoute: ActivatedRoute, public route: Router) {
@@ -28,26 +29,29 @@ export class FuncionarioFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activeRoute.paramMap.subscribe(params => {
-      this.id = null;
-      this.id = +params.get('id');
-      this.service.getFuncionarios().subscribe(fun => {
-        this.funcionariosList= fun;
-      });
-      if (this.id) {
-        this.activadorFoto = true;
-        this.deshabilitadorCampos = false;
-        this.service.getFuncionariosPorID(this.id).subscribe(
-          fun => {
-            this.funcionarioBuscado = fun;
-            this.fun.nombres = this.funcionarioBuscado.nombres;
-            this.fun.apellidos = this.funcionarioBuscado.apellidos;
-            this.fun.cargo = this.funcionarioBuscado.cargo;
-            this.fun.rut = this.funcionarioBuscado.rut;
-          }
-        );
-      }
-    })
+    let local =  localStorage.getItem('flag');    
+    if(local == "true"){
+      this.editarIsOn = true;    
+      this.activeRoute.paramMap.subscribe(params => {
+        this.id = null;
+        this.id = +params.get('id');
+        if (this.id) {
+          this.activadorFoto = false;
+          this.deshabilitadorCampos = true;
+          this.service.getFuncionariosPorID(this.id).subscribe(
+            fun => {              
+              this.funcionarioBuscado = fun;
+              this.fun.nombres = this.funcionarioBuscado.nombres;
+              this.fun.apellidos = this.funcionarioBuscado.apellidos;
+              this.fun.cargo = this.funcionarioBuscado.cargo;
+              this.fun.rut = this.funcionarioBuscado.rut;
+            }
+          );
+        }
+      })
+    }
+    
+   
   }
 
   private fotosSeleccionadas: File;
@@ -60,7 +64,7 @@ export class FuncionarioFormComponent implements OnInit {
       //subimos imagen 
       this.service.subirImagenFuncionario(this.fotosSeleccionadas, this.id).subscribe(
         fun => {
-          
+          this.fun = null;
         },
         err => {
         }
@@ -79,6 +83,20 @@ export class FuncionarioFormComponent implements OnInit {
         }
       );
     }
+  }
+  public update(): void {
+    this.service.updateFuncionario(this.fun, this.funcionarioBuscado.id_funcionario)
+      .subscribe(
+        json => {
+          localStorage.clear();
+          this.editarIsOn= false;
+          this.route.navigate(['/inicio/gf']);
+          Swal.fire('Funcionario Actualizado', `Se ha actualizado el funcionario con Exito`, 'success');
+          this.fun = null;
+        },
+        err => {
+          console.log(err);
+        });
   }
 }
 

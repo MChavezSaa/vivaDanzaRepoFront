@@ -8,6 +8,8 @@ import { Album } from '../Entidades/Album';
 import { Foto } from '../Entidades/Foto';
 import { Carousel } from '../Entidades/carousel';
 import { Usuario } from '../Entidades/usuario';
+import Swal from 'sweetalert2';
+
 
 @Injectable({
   providedIn: 'root'
@@ -162,7 +164,7 @@ export class BackServiceService {
         }
         console.error(e.error.mensaje);
 
-        //Swal.fire('Error al crear el traslado', e.error.mensaje, 'error');
+        Swal.fire('Error al crear el traslado', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
@@ -174,10 +176,8 @@ export class BackServiceService {
         if (this.isNoAutorizado(e)) {
           return throwError(e);
         }
-
-        //this.router.navigate(['/administracion-inicio/Afuncionarios']);
         console.error(e.error.mensaje);
-        //Swal.fire('Error al editar', e.error.mensaje, 'error');
+        Swal.fire('Error al editar', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
@@ -195,6 +195,53 @@ export class BackServiceService {
     }
     return this.http.post(this.urlEndPoint + 'SubirImagenFunc', formData, { headers: httpHeaders });
 
+  }
+
+  updateFuncionario(funcionario: Funcionario, id: number): Observable<any> {
+    return this.http.put<any>(`${this.urlEndPoint}updateFuncionario/${id}`, funcionario, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        if (this.isNoAutorizado(e)) {
+          return throwError(e);
+        }
+        console.error(e.error.mensaje);
+        Swal.fire('Error al editar el funcionario', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
+  }
+  deleteFuncionario(id: number): Observable<Funcionario> {
+    return this.http.delete<Funcionario>(this.urlEndPoint+'DeleteFuncionario/'+id, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        if (this.isNoAutorizado(e)) {
+          return throwError(e);
+        }
+        console.error(e.error.mensaje);
+        Swal.fire('Error al eliminar el funcionario', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
+  }
+
+  updateProfesional(id: number,) {
+
+    let httpHeaders = new HttpHeaders();
+    let token = this.token;
+    if (token != null) {
+      httpHeaders = httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+
+    return this.http.put('http://localhost:8080/darAltaFunc/' + id, { headers: httpHeaders });
+  }
+
+  darAlta(id: number): Observable<any> {
+    
+    return this.http.put<any>(this.urlEndPoint+'darAltaFunc/'+id, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {     
+        console.error(e.error.mensaje);
+        Swal.fire('Error al dar de alta el funcionario', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
   }
 
   /*ALBUM */
@@ -221,7 +268,7 @@ export class BackServiceService {
 
         //this.router.navigate(['/administracion-inicio/Afuncionarios']);
         console.error(e.error.mensaje);
-        //Swal.fire('Error al editar', e.error.mensaje, 'error');
+        Swal.fire('Error al guardar', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
@@ -250,7 +297,7 @@ export class BackServiceService {
 
         //this.router.navigate(['/administracion-inicio/Afuncionarios']);
         console.error(e.error.mensaje);
-        //Swal.fire('Error al editar', e.error.mensaje, 'error');
+        Swal.fire('Error al editar', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
@@ -281,7 +328,7 @@ export class BackServiceService {
 
         //this.router.navigate(['/administracion-inicio/Afuncionarios']);
         console.error(e.error.mensaje);
-        //Swal.fire('Error al editar', e.error.mensaje, 'error');
+        Swal.fire('Error al desactivar', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
@@ -304,24 +351,12 @@ export class BackServiceService {
         if (this.isNoAutorizado(e)) {
           return throwError(e);
         }
+        Swal.fire('Error al subir la imagen', e.error.mensaje, 'error');
         console.error(e.error.mensaje);
-
         return throwError(e);
       })
     );
-    /**.pipe(
-      map((response: any) => response.foto as Foto),
-      catchError(e => {
-        if (this.isNoAutorizado(e)) {
-          return throwError(e);
-        }
 
-        //this.router.navigate(['/administracion-inicio/Afuncionarios']);
-        console.error(e.error.mensaje);
-        //Swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError(e);
-      })
-    ); */
   }
 
   subirImagenExistente(carousel: Carousel): Observable<Carousel> {
@@ -333,7 +368,7 @@ export class BackServiceService {
 
         //this.router.navigate(['/administracion-inicio/Afuncionarios']);
         console.error(e.error.mensaje);
-        //Swal.fire('Error al editar', e.error.mensaje, 'error');
+        Swal.fire('Error al subir la imagen', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
@@ -374,7 +409,7 @@ export class BackServiceService {
 
         //this.router.navigate(['/administracion-inicio/Afuncionarios']);
         console.error(e.error.mensaje);
-        //Swal.fire('Error al editar', e.error.mensaje, 'error');
+        Swal.fire('Error al subir la imagen', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
@@ -405,7 +440,7 @@ export class BackServiceService {
 
         //this.router.navigate(['/administracion-inicio/Afuncionarios']);
         console.error(e.error.mensaje);
-        //Swal.fire('Error al editar', e.error.mensaje, 'error');
+        Swal.fire('Error al eliminar', e.error.mensaje, 'error');
         return throwError(e);
       })
     );

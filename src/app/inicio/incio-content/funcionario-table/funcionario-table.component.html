@@ -14,49 +14,103 @@
             <button [routerLink]="[ '/inicio/fform']" type="button" class="btn btn-outline-primary">Agregar
                 Funcionario</button>
         </div>
-        <div class="card mb-3">
-            <!--CARD CONTENEDORA DE LA TABLA-->
-            <div class="card-header text-center">
-                Lista de funcionarios
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <!--INICIO TABLA REVISIONES-->
-                    <table class="table table-hover">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">cargo</th>
-                                <th scope="col">leyenda</th>
-                                <th scope="col">Editar</th>
-                                <th scope="col">Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let c of funcionariosList">
 
-                                <td>{{c.nombres | titlecase}} {{c.apellidos | titlecase}}</td>
-                                <td>{{c.cargo}}</td>
-                                <td>{{c.leyenda}}</td>
-                                <td><button type="button" name="editar"
-                                        [routerLink]="['/personal-inicio/clientes-form',c.id]"
-                                        class="btn btn-primary">editar</button></td>
-                                <td><button type="button" name="eliminar" class="btn btn-danger"
-                                        (click)='delete(c)'>eliminar</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-activo-tab" data-toggle="tab" href="#nav-activo" role="tab"
+                    aria-controls="nav-activo" aria-selected="true">Funcionarios Activos</a>
+                <a class="nav-item nav-link" id="nav-inactivo-tab" data-toggle="tab" href="#nav-inactivo" role="tab"
+                    aria-controls="nav-inactivo" aria-selected="false">Funcionarios Inactivos</a>
+            </div>
+        </nav>
+        
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-activo" role="tabpanel" aria-labelledby="nav-activo-tab">
+                <div class="card mb-3">
+                    <!--CARD CONTENEDORA DE LA TABLA-->
+                    <div class="card-header text-center">
+                        Lista de funcionarios
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <!--INICIO TABLA REVISIONES-->
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">cargo</th>
+                                        <th scope="col">leyenda</th>
+                                        <th scope="col">Actualizar Foto</th>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let c of funcionariosList">
+
+                                        <tr *ngIf="c.estado_funcionario==true">
+
+                                            <td>{{c.nombres | titlecase}} {{c.apellidos | titlecase}}</td>
+                                            <td>{{c.cargo}}</td>
+                                            <td>{{c.leyenda}}</td>
+                                            <td><button type="button" name="editar" (click)="actualizarFoto(c)"
+                                                    class="btn btn-warning">Actualizar</button></td>
+                                            <td><button type="button" name="editar" (click)="editar(c.id_funcionario)"
+                                                    class="btn btn-primary">editar</button></td>
+                                            <td><button type="button" name="eliminar" class="btn btn-danger"
+                                                    (click)='delete(c)'>eliminar</button></td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--FIN TABLA REVISIONES-->
+                    </div>
                 </div>
-                <!--FIN TABLA REVISIONES-->
+            </div>
+            <div class="tab-pane fade" id="nav-inactivo" role="tabpanel" aria-labelledby="nav-inactivo-tab">
+                <div class="card mb-3">
+                    <div class="card-header text-center">
+                        Listado de Funcionarios
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            
+                            <table class="table table-hover"  >
+                                <thead class="thead-dark" style="text-align: center" >
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                            <th scope="col">cargo</th>
+                                            <th scope="col">leyenda</th>
+                                            <th scope="col">Activar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let c of funcionariosList">
+    
+                                        <tr *ngIf="c.estado_funcionario==false">
+                                            <td>{{c.nombres | titlecase}} {{c.apellidos | titlecase}}</td>
+                                            <td>{{c.cargo}}</td>
+                                            <td>{{c.leyenda}}</td>
+                                            <td><button type="button" name="activar" (click)="darAlta1(c)"
+                                                    class="btn btn-success">Activar</button></td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+       
         <br>
     </div>
-    <div  *ngIf="this.service.isAuthenticated()== false " class="container ">
+    <div *ngIf="this.service.isAuthenticated()== false " class="container ">
         <div align="center">
             <img src="../../../../../../assets/img/404.jpg" alt="">
         </div>
-    </div>    
+    </div>
 </div>
 
 <!--FIN CARD CONTENEDORA DE TABLA-->

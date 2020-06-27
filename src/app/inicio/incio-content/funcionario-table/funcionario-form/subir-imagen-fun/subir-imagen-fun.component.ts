@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Funcionario } from 'src/app/Entidades/Funcionario';
 import { BackServiceService } from 'src/app/services/back-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subir-imagen-fun',
@@ -14,7 +15,7 @@ export class SubirImagenFunComponent implements OnInit {
   funcionariosList :Funcionario[] =[];
   fun: Funcionario;
   rut: String;
-  constructor(public service: BackServiceService) { 
+  constructor(public service: BackServiceService, public route: Router) { 
     this.fun= new Funcionario();
   }
 
@@ -36,10 +37,11 @@ export class SubirImagenFunComponent implements OnInit {
   save(){
     this.service.subirImagenFuncionario(this.fotosSeleccionadas, this.fun.id_funcionario).subscribe(
       fun => {
-        console.log(this.fun.id_funcionario);
+        localStorage.clear();
+        this.route.navigate(['/inicio/gf']);
       },
       err => {        
-        console.log(this.fun.id_funcionario);
+        console.log(err);
       }
     );
   }
