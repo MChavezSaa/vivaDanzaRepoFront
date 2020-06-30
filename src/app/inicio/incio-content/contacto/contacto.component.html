@@ -2,13 +2,105 @@
 
   <br>
   <hr>
-  <i>
-    <h4>Contactanos</h4>
-  </i>
-  <div class="card" style="background-color:#fff8e7 ;">
-    <div class="card-body">
-      <label for="">/*NOTA COMENTARIO ESTO DEBE ESTAR POR BACKEND*/</label>
 
+  <div class="row">
+    <div class="col-10">
+      <i>
+        <h4>Contactanos</h4>
+      </i>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-primary mt-5">Editar</button>
     </div>
   </div>
-</div>
+
+  <div>
+
+  </div>
+  
+  <!--Editor de texto-->
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+
+        <form [formGroup]="editorForm">
+          <div class="form-group">
+            <label for="editor">
+              <h3>Editor</h3>
+            </label>
+            <div style="background-color: white;">
+              <quill-editor [styles]="{height: '300px' }" [modules]='config' formControlName="editor"></quill-editor>
+            </div>
+
+
+          </div>
+
+
+        </form>
+        <button class="btn btn-primary mt-5" (click)="onSubmit()">Submit</button>
+      </div>
+
+      <div class="col-6">
+        <label for="">
+          <h3>Preview</h3>
+        </label><br>
+        <p class="my-5" [innerHTML]="editorContent"></p>
+
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <!--Contactanos form email-->
+  <div>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="name">
+                          Nombre Completo:</label>
+                        <input class="form-control" type="text" placeholder="Ingrese su nombre completo"
+                          [(ngModel)]="mail.name">
+                        <br>
+                        <label for="email">
+                          Correo de Contacto:</label>
+                        <input class="form-control" type="email" placeholder="Ingrese su correo"
+                          [(ngModel)]="mail.mail">
+                        <br>
+                        <label for="subject">
+                          Asunto:</label>
+                        <input class="form-control" type="text" placeholder="Ingrese Asunto" [(ngModel)]="mail.subject">
+                        <br>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="name">
+                          Mensaje</label>
+                        <textarea class="form-control" style="width: 350px; height: 230px;" type="text"
+                          placeholder="Mensaje" [(ngModel)]="mail.body"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <button (click)="sendMail()" class="btn btn-primary pull-right" id="btnContactUs">
+                        Enviar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+  </div>

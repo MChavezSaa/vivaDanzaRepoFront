@@ -63,7 +63,7 @@ export class FuncionarioFormComponent implements OnInit {
     if (this.id) {
       //subimos imagen 
       this.service.subirImagenFuncionario(this.fotosSeleccionadas, this.id).subscribe(
-        fun => {
+        fun => {          
           this.fun = null;
         },
         err => {
@@ -98,6 +98,26 @@ export class FuncionarioFormComponent implements OnInit {
           console.log(err);
         });
   }
+  
+
+  cancelar() {
+  
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "No se guardara ningun progreso",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, volver!',
+      cancelButtonText: 'Manternerme aqui!',
+    }).then((result) => {
+      if (result.value) {
+        this.route.navigate(['/inicio/gf']);
+      }
+    })
+  }
+
 }
 
 

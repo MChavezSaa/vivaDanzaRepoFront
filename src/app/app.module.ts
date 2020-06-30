@@ -29,6 +29,7 @@ import { NuevaFotoCarouselComponent } from './inicio/incio-content/editar-carous
 import { FotoExistenteComponent } from './inicio/incio-content/editar-carousel/foto-existente/foto-existente.component';
 import { EditarFuncionarioComponent } from './editar-funcionario/editar-funcionario.component';
 import { SubirImagenFunComponent } from './inicio/incio-content/funcionario-table/funcionario-form/subir-imagen-fun/subir-imagen-fun.component';
+import {QuillModule} from 'ngx-quill';
 
 
 
@@ -148,6 +149,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    QuillModule.forRoot(),    
     CarouselModule.forRoot()
   ],
   providers: [],

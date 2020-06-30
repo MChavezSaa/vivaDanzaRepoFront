@@ -9,6 +9,7 @@ import { Foto } from '../Entidades/Foto';
 import { Carousel } from '../Entidades/carousel';
 import { Usuario } from '../Entidades/usuario';
 import Swal from 'sweetalert2';
+import { Email } from '../Entidades/Email';
 
 
 @Injectable({
@@ -447,4 +448,15 @@ export class BackServiceService {
     );
   }
 
+  /*EMAIL*/
+
+sendEmail(mail: Email): Observable<Email> {
+    return this.http.post<Email>(this.urlEndPoint + "sendMail", mail).pipe(
+      catchError(e => {
+        console.error(e.error.mensaje);
+        Swal.fire('Error al enviar mail', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
+  }
 }
