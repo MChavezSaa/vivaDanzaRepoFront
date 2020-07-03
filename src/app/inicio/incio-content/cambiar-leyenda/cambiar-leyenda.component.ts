@@ -43,7 +43,7 @@ export class CambiarLeyendaComponent implements OnInit {
   }
 
   ngOnInit() {    
-    this.rut = localStorage.getItem('rut');
+    this.rut = this.service.usuario.username;
     this.service.getFuncionarioByRut(this.rut).subscribe(fun1 =>{
       this.fun= fun1;
       if(this.fun.leyenda == null){
