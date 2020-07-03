@@ -54,7 +54,6 @@ export class EditarContactoComponent implements OnInit {
 
   onSubmit(){
     this.editorContent = this.editorForm.get('editor').value;
-    console.log(this.editorContent)
     this.contaco.texto = this.editorContent;
 
     this.service.saveContacto(this.contaco).subscribe(fun=>{
@@ -65,6 +64,10 @@ export class EditarContactoComponent implements OnInit {
       )
       this.route.navigate(['/inicio/contacto']);
     })
+  }
+  preview(){
+    this.editorContent = this.editorForm.get('editor').value;    
+    this.contaco.texto = this.editorContent;
   }
   textChanged($event){
     if ($event.editor.getLength() > this.MAX_LENGTH) {
