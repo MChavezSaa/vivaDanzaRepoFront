@@ -1,4 +1,4 @@
-<div style="background-color: #fff8e7;">
+<div *ngIf="this.service.isAuthenticated()== true " style="background-color: #fff8e7;">
   <div class="container">
     <div class="row">
       <nav aria-label="breadcrumb">
@@ -45,7 +45,7 @@
 
 
         </form>
-        <button class="btn btn-primary mt-5" (click)="onSubmit()">Submit</button>
+        <button class="btn btn-primary mt-5" (click)="onSubmit()">Guardar</button>
       </div>
 
       <div class="col-6">
@@ -60,4 +60,10 @@
 
 
   <br>
+</div>
+
+<div *ngIf="this.service.isAuthenticated()== false " class="container ">
+  <div align="center">
+      <img src="../../../../../../assets/img/404.jpg" alt="">
+  </div>
 </div>

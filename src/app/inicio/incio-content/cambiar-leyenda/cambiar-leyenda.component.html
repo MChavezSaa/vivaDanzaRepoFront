@@ -65,7 +65,7 @@
         </div>
     </div>
     <!--editor de texto leyenda-->
-    <div style="background-color: #fff8e7;">
+    <div  *ngIf="this.service.isAuthenticated()== true " style="background-color: #fff8e7;">
         <!--Editor de texto-->
         <div class="container">
             <div class="row">

@@ -32,6 +32,7 @@ import {QuillModule} from 'ngx-quill';
 import { EditarContactoComponent } from './inicio/incio-content/contacto/editar-contacto/editar-contacto.component';
 import { CambiarPasswordComponent } from './inicio/incio-content/cambiar-password/cambiar-password.component';
 import { CambiarLeyendaComponent } from './inicio/incio-content/cambiar-leyenda/cambiar-leyenda.component';
+import { AuthGuard } from './Guard/auth.guard';
 
 
 
@@ -53,7 +54,9 @@ const routes: Routes = [
       },
       {
         path:'edCon',
-        component: EditarContactoComponent
+        component: EditarContactoComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:'qs',
@@ -61,19 +64,27 @@ const routes: Routes = [
       }, 
       {
         path: 'gf',
-        component: FuncionarioTableComponent
+        component: FuncionarioTableComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path: 'fform',
-        component: FuncionarioFormComponent
+        component: FuncionarioFormComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path: 'fform/:id',
-        component: FuncionarioFormComponent
+        component: FuncionarioFormComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path: 'sbi',
-        component: SubirImagenFunComponent
+        component: SubirImagenFunComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:'Galeria',
@@ -81,43 +92,63 @@ const routes: Routes = [
       },
       {
         path:'gestionGaleria',
-        component: ListaFotosComponent
+        component: ListaFotosComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:"albumForm",
-        component: DetalleFotosComponent
+        component: DetalleFotosComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:"albumForm/:id",
-        component: DetalleFotosComponent
+        component: DetalleFotosComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:'editarAlbum/:id',
-        component:EditarAlbumComponent
+        component:EditarAlbumComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:'gesFotos/:id',
-        component:GestionFotosComponent
+        component:GestionFotosComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:'editarCarousel',
-        component: EditarCarouselComponent
+        component: EditarCarouselComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:'nuevaFotoCarousel',
-        component: NuevaFotoCarouselComponent
+        component: NuevaFotoCarouselComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:'fotoExistente',
-        component: FotoExistenteComponent
+        component: FotoExistenteComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:'cambiarPassword',
-        component: CambiarPasswordComponent
+        component: CambiarPasswordComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path:'cambiarLeyenda',
-        component: CambiarLeyendaComponent
+        component: CambiarLeyendaComponent,
+        canActivate: [AuthGuard]
+
       }
 
     ]
