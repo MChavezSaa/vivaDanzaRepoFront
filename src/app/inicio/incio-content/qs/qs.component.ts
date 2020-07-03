@@ -13,9 +13,20 @@ export class QSComponent implements OnInit {
 
   FuncionarioList: Funcionario[] = [];
   ngOnInit() {
+    localStorage.clear()
     this.service.getFuncionarios().subscribe(fun =>{
       this.FuncionarioList= fun;
      });
+  }
+
+
+  leyenda(leyenda: string){
+    if(leyenda == null){
+      return 'No existe leyenda para mostrar'
+    }else{
+      return leyenda;
+    }
+
   }
 
 }

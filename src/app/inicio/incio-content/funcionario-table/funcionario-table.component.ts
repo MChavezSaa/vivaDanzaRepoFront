@@ -17,10 +17,12 @@ export class FuncionarioTableComponent implements OnInit {
     , public route: Router) { }
 
   ngOnInit() {
+    localStorage.clear()
     this.service.getFuncionarios().subscribe(fun => {
       this.funcionariosList = fun;
     })
   }
+
 
   editar(id: number) {
     localStorage.setItem('flag', 'true');
@@ -43,7 +45,7 @@ export class FuncionarioTableComponent implements OnInit {
     this.service.darAlta(fun, fun.id_funcionario)
       .subscribe(
         json => {
-          Swal.fire('Cambio de estado',' Cambio de estado realizado con éxito', 'success');
+          Swal.fire('Cambio de estado', ' Cambio de estado realizado con éxito', 'success');
           this.ngOnInit();
         },
         err => {

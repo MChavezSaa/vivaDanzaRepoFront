@@ -19,7 +19,7 @@ export class InicioSesionComponent implements OnInit {
   ngOnInit() {
     if(this.service.isAuthenticated()){
       //Swal.fire('Inicio de sesión correctamente', `Bienvenido nuevamente ${this.service.usuario.username}`, 'info');
-      this.router.navigate(['/administracion-inicio'])
+      this.router.navigate(['/inicio'])
     }
   }
 

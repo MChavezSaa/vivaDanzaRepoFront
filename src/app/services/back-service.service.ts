@@ -10,6 +10,7 @@ import { Carousel } from '../Entidades/carousel';
 import { Usuario } from '../Entidades/usuario';
 import Swal from 'sweetalert2';
 import { Email } from '../Entidades/Email';
+import { Contacto } from '../Entidades/Contacto';
 
 
 @Injectable({
@@ -245,6 +246,19 @@ export class BackServiceService {
       })
     );
   }
+  updateLeyenda(funcionario: Funcionario, id: number): Observable<any> {
+    return this.http.put<any>(`${this.urlEndPoint}updateLeyenda/${id}`, funcionario, 
+    { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        if (this.isNoAutorizado(e)) {
+          return throwError(e);
+        }
+        console.error(e.error.mensaje);
+        Swal.fire('Error al actualizar leyenda', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
+  }
  
   /*ALBUM */
   getAlbumes(): Observable<Album[]> {
@@ -448,6 +462,35 @@ export class BackServiceService {
     );
   }
 
+    /*CONTACTO */
+    getContacto(): Observable<Contacto> {
+      return this.http.get<Contacto>(this.urlEndPoint + 'getContacto',
+      { headers: this.agregarAuthorizationHeader() }).pipe(
+        catchError(e => {
+          if (this.isNoAutorizado(e)) {
+            return throwError(e);
+          }
+          console.error(e.error.mensaje);
+          Swal.fire('Error al traer los datos', e.error.mensaje, 'error');
+          return throwError(e);
+        })
+      );
+    }
+    saveContacto(contacto: Contacto): Observable<Contacto> {
+      return this.http.put<Contacto>(this.urlEndPoint + "saveContacto", contacto,
+       { headers: this.agregarAuthorizationHeader() }).pipe(
+        catchError(e => {
+          if (this.isNoAutorizado(e)) {
+            return throwError(e);
+          }
+  
+          //this.router.navigate(['/administracion-inicio/Afuncionarios']);
+          console.error(e.error.mensaje);
+          Swal.fire('Error al guardar', e.error.mensaje, 'error');
+          return throwError(e);
+        })
+      );
+    }
   /*EMAIL*/
 
 sendEmail(mail: Email): Observable<Email> {
@@ -455,6 +498,22 @@ sendEmail(mail: Email): Observable<Email> {
       catchError(e => {
         console.error(e.error.mensaje);
         Swal.fire('Error al enviar mail', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
+  }
+
+  /*CAMBIAR PASS*/
+
+  cambioPass(user: Usuario): Observable<any> {
+    return this.http.put<any>(`${this.urlEndPoint}cambioPass/`, user, 
+    { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        if (this.isNoAutorizado(e)) {
+          return throwError(e);
+        }
+        console.error(e.error.mensaje);
+        Swal.fire('Error al cambiar la contraseña', e.error.mensaje, 'error');
         return throwError(e);
       })
     );

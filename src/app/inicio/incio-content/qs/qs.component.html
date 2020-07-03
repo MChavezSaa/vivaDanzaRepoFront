@@ -1,4 +1,14 @@
 <div style="background-color: #fff8e7;">
+    <div class="container">
+        <div class="row">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb " style="background-color: #fff8e7;">
+                    <li class="breadcrumb-item"><a [routerLink]="['/inicio']" href="#">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Quienes Somos</li>
+                </ol>
+            </nav>
+        </div>
+       </div>
     <div>
         <br>
         <i>
@@ -12,27 +22,31 @@
             <hr>
             <h4 style="text-align: center;">Equipo</h4>
         </i>
-        <div *ngIf="this.service.isAuthenticated()== true && this.service.hasRole('ROLE_ADMIN')" class="a2" align="right">
+        <div *ngIf="this.service.isAuthenticated()== true && this.service.hasRole('ROLE_ADMIN')" class="a2"
+            align="right">
             <button [routerLink]="[ '/inicio/gf']" type="button" class="btn btn-outline-primary">Gestionar
                 Funcionarios</button>
         </div>
         <hr>
-
-        <br>
     </div>
 
-    <div class="row" style="padding-left: 20px;"> 
-        <div *ngFor="let Funcionarios of this.FuncionarioList " style="padding-left: 15px;">
-    
-    <div class="card" style="width: 18rem;" *ngIf="Funcionarios.estado_funcionario == true">
-                <img class=" img-fluid" src="http://localhost:8080/uploads/{{Funcionarios.foto}}"  style="widows: 290px; height: 290px;" alt="card image">
+    <div class="row" style="padding-left: 20px;">
+        <div *ngFor="let Funcionarios of this.FuncionarioList " style="padding-left: 30px;">
+
+            <div class="card" style="width: 18rem;" *ngIf="Funcionarios.estado_funcionario == true">
+                <img class=" img-fluid" src="http://localhost:8080/uploads/{{Funcionarios.foto}}"
+                    style="widows: 290px; height: 290px;" alt="card image">
                 <div class="card-body">
                     <h5 class="card-title"><b>{{Funcionarios.nombres | titlecase}}</b></h5>
                     <h5 class="card-title"> <b>{{Funcionarios.apellidos | titlecase}}</b></h5>
-                    <br>                
-                    <i><h6 class="card-text"><b>Funcionario de Viva Danza</b></h6></i>
-                    <br>
-                    <p><i>"{{Funcionarios.leyenda}}"</i></p>
+                    <hr>
+                    <i>
+                        <h6 class="card-text"><b>Funcionario de Viva Danza</b></h6>
+                    </i>
+                    <hr>
+                    <i>
+                        <p class="my-5" [innerHTML]="leyenda(Funcionarios.leyenda)"></p>
+                    </i>
                 </div>
             </div>
         </div>

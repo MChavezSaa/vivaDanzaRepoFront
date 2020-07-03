@@ -1,4 +1,16 @@
 <div style="background-color: #fff8e7;">
+    <div class="container">
+        <div class="row">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb " style="background-color: #fff8e7;">
+                    <li class="breadcrumb-item"><a [routerLink]="['/inicio']" href="#">Inicio</a></li> 
+                    <li class="breadcrumb-item"><a [routerLink]="['/inicio/qs']" href="#">Quienes Somos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Gestión Funcionarios</li>
+
+                </ol>
+            </nav>
+        </div>
+    </div>
     <div *ngIf="this.service.isAuthenticated()== true " class="container">
         <br>
         <hr>
@@ -52,7 +64,7 @@
 
                                             <td>{{c.nombres | titlecase}} {{c.apellidos | titlecase}}</td>
                                             <td>{{c.cargo}}</td>
-                                            <td>{{c.leyenda}}</td>
+                                            <td><p [innerHTML]="c.leyenda"></p></td>                                           
                                             <td><button type="button" name="editar" (click)="actualizarFoto(c)"
                                                     class="btn btn-warning">Actualizar</button></td>
                                             <td><button type="button" name="editar" (click)="editar(c.id_funcionario)"
@@ -91,7 +103,7 @@
                                         <tr *ngIf="c.estado_funcionario==false">
                                             <td>{{c.nombres | titlecase}} {{c.apellidos | titlecase}}</td>
                                             <td>{{c.cargo}}</td>
-                                            <td>{{c.leyenda}}</td>
+                                            <td><p class="my-5" [innerHTML]="c.leyenda"></p></td>
                                             <td><button type="button" name="activar" (click)="darAlta(c)"
                                                     class="btn btn-success">Activar</button></td>
                                         </tr>

@@ -1,4 +1,16 @@
 <div style="background-color: #fff8e7;">    
+   <div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb " style="background-color: #fff8e7;">
+                <li class="breadcrumb-item"><a [routerLink]="['/inicio']" href="#">Inicio</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="['/inicio/qs']" href="#">Quienes Somos</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="['/inicio/gf']" href="#">Gestión Funcionarios</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Formulario Inscripción</li>
+            </ol>
+        </nav>
+    </div>
+   </div>
     <div *ngIf="this.service.isAuthenticated()== true " class="container" style="background-color: #fff8e7;">
         <legend>Formulario inscripción Funcionarios</legend>
         <hr style="color: black">

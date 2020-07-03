@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import {Quill} from 'quill'
 import { Email } from 'src/app/Entidades/Email';
 import { BackServiceService } from 'src/app/services/back-service.service';
 import Swal from 'sweetalert2';
@@ -33,17 +32,13 @@ export class ContactoComponent implements OnInit {
   constructor(public service: BackServiceService) { }
 
   ngOnInit() {
+    this.service.getContacto().subscribe(fun=>{
+      this.editorContent = fun.texto;
+    })
     this.mail = new Email();
     this.editorForm = new FormGroup({
       editor : new FormControl()
     })
-  }
-
-  onSubmit(){
-    
-    this.editorContent = this.editorForm.get('editor').value;
-    
-    
   }
   sendMail(){
      this.service.sendEmail(this.mail).subscribe(fun=>{

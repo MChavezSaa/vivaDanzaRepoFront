@@ -27,9 +27,11 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NuevaFotoCarouselComponent } from './inicio/incio-content/editar-carousel/nueva-foto-carousel/nueva-foto-carousel.component';
 import { FotoExistenteComponent } from './inicio/incio-content/editar-carousel/foto-existente/foto-existente.component';
-import { EditarFuncionarioComponent } from './editar-funcionario/editar-funcionario.component';
 import { SubirImagenFunComponent } from './inicio/incio-content/funcionario-table/funcionario-form/subir-imagen-fun/subir-imagen-fun.component';
 import {QuillModule} from 'ngx-quill';
+import { EditarContactoComponent } from './inicio/incio-content/contacto/editar-contacto/editar-contacto.component';
+import { CambiarPasswordComponent } from './inicio/incio-content/cambiar-password/cambiar-password.component';
+import { CambiarLeyendaComponent } from './inicio/incio-content/cambiar-leyenda/cambiar-leyenda.component';
 
 
 
@@ -48,6 +50,10 @@ const routes: Routes = [
       {
         path:'contacto',
         component: ContactoComponent
+      },
+      {
+        path:'edCon',
+        component: EditarContactoComponent
       },
       {
         path:'qs',
@@ -104,7 +110,16 @@ const routes: Routes = [
       {
         path:'fotoExistente',
         component: FotoExistenteComponent
+      },
+      {
+        path:'cambiarPassword',
+        component: CambiarPasswordComponent
+      },
+      {
+        path:'cambiarLeyenda',
+        component: CambiarLeyendaComponent
       }
+
     ]
   },
   {
@@ -136,8 +151,10 @@ const routes: Routes = [
     EditarCarouselComponent,
     NuevaFotoCarouselComponent,
     FotoExistenteComponent,
-    EditarFuncionarioComponent,
     SubirImagenFunComponent,
+    EditarContactoComponent,
+    CambiarPasswordComponent,
+    CambiarLeyendaComponent,
     
   ],
   imports: [

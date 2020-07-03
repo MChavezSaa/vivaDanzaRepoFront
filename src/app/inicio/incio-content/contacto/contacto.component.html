@@ -1,56 +1,37 @@
 <div style="background-color: #fff8e7;">
-
-  <br>
-  <hr>
-
-  <div class="row">
-    <div class="col-10">
-      <i>
-        <h4>Contactanos</h4>
-      </i>
-    </div>
-    <div class="col-2">
-      <button class="btn btn-primary mt-5">Editar</button>
-    </div>
-  </div>
-
-  <div>
-
-  </div>
-  
-  <!--Editor de texto-->
   <div class="container">
     <div class="row">
-      <div class="col-6">
-
-        <form [formGroup]="editorForm">
-          <div class="form-group">
-            <label for="editor">
-              <h3>Editor</h3>
-            </label>
-            <div style="background-color: white;">
-              <quill-editor [styles]="{height: '300px' }" [modules]='config' formControlName="editor"></quill-editor>
-            </div>
-
-
-          </div>
-
-
-        </form>
-        <button class="btn btn-primary mt-5" (click)="onSubmit()">Submit</button>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb " style="background-color: #fff8e7;">
+          <li class="breadcrumb-item"><a [routerLink]="['/inicio']" href="#">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Contactanos</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="continer">
+    <div class="row">
+      <div class="col-10" style="padding-left: 80px;">
+        <i>
+          <h3 style="padding-left: 20px;">Contactanos</h3>
+        </i>
       </div>
-
-      <div class="col-6">
-        <label for="">
-          <h3>Preview</h3>
-        </label><br>
-        <p class="my-5" [innerHTML]="editorContent"></p>
-
+      <div *ngIf="this.service.isAuthenticated() && (this.service.hasRole('ROLE_ADMIN'))" class="col-2" >
+        <button class="btn btn-primary mt-5" [routerLink]="[ '/inicio/edCon' ]">Editar</button>
       </div>
     </div>
   </div>
+ 
 
-
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div style="padding-left: 40px;">
+        <p class="my-5" [innerHTML]="editorContent"></p>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
   <br>
   <!--Contactanos form email-->
   <div>
@@ -104,3 +85,4 @@
     </div>
 
   </div>
+</div>

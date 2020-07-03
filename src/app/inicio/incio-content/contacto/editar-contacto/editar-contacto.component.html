@@ -1,0 +1,63 @@
+<div style="background-color: #fff8e7;">
+  <div class="container">
+    <div class="row">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb " style="background-color: #fff8e7;">
+          <li class="breadcrumb-item"><a [routerLink]="['/inicio']" href="#">Inicio</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="['/inicio/contacto']" href="#">Contactanos</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Edición de Contactanos</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="continer">
+    <div class="row">
+      <div class="col-10" style="padding-left: 80px;">
+        <i>
+          <h3 style="padding-left: 20px;">Contactanos</h3>
+        </i>
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+  </div>
+
+  <!--Editor de texto-->
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+
+        <form [formGroup]="editorForm">
+          <div class="form-group">
+            <label for="editor">
+              <h4>Editor</h4>
+            </label>
+            <!--(ngModelChange)="maxLenght($event)"-->
+            <div style="background-color: white;">
+              <quill-editor [styles]="{height: '300px' }" [(ngModel)]="textoQuill"
+                (onContentChanged)="textChanged($event)" [modules]='config' formControlName="editor"></quill-editor>
+              <span
+                *ngIf="editorForm.get('editor').value != null">{{this.MAX_LENGTH - editorForm.get('editor').value.length}}</span>
+            </div>
+
+
+          </div>
+
+
+        </form>
+        <button class="btn btn-primary mt-5" (click)="onSubmit()">Submit</button>
+      </div>
+
+      <div class="col-6">
+        <label for="">
+          <h4>Preview</h4>
+        </label><br>
+        <p class="my-5" [innerHTML]="editorContent"></p>
+
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+</div>
