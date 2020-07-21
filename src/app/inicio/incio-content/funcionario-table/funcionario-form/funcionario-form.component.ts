@@ -85,6 +85,7 @@ export class FuncionarioFormComponent implements OnInit {
     }
   }
   public update(): void {
+    console.log(this.fun);
     this.service.updateFuncionario(this.fun, this.funcionarioBuscado.id_funcionario)
       .subscribe(
         json => {

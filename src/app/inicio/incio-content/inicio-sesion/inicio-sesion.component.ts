@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/Entidades/usuario';
 import { BackServiceService } from 'src/app/services/back-service.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-inicio-sesion',
   templateUrl: './inicio-sesion.component.html',
@@ -41,10 +41,10 @@ export class InicioSesionComponent implements OnInit {
         
       this.router.navigate(['/inicio']);
       let usuario = this.service.usuario;
-      //Swal.fire('Inicio de sesión correctamente', `Bienvenido ${usuario.username}`, 'success');
+      Swal.fire('Inicio de sesión correctamente', `Bienvenido ${usuario.nombre}`, 'success');
     }, err => {
       if(err.status == 400){
-        //Swal.fire('Error credenciales incorrectas', 'Verifica usuario y contraseña.', 'error');
+      Swal.fire('Error credenciales incorrectas', 'Verifica usuario y contraseña.', 'error');
       }
     }
     );

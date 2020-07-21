@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackServiceService } from 'src/app/services/back-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -19,6 +20,7 @@ export class NavbarComponent implements OnInit {
   }
   logout(): void{
     this.service.logout();
+    Swal.fire('Sesión cerrada con exito! ','' ,'success');
     this.router.navigateByUrl('/inicio');
   }
 
